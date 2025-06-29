@@ -54,10 +54,10 @@ const loginUser = asyncHandler(async (req, res) => {
 })*/
 
 import { asyncHandler } from "../utils/asyncHandler.js";
-import {ApiError} from "../utils/ApiError.js"
-import { User} from "../models/user.model.js"
+import ApiError from "../utils/ApiError.js"
+import { User} from "../models/usermodel.js"
 //import {uploadOnCloudinary} from "../utils/cloudinary.js"
-import { ApiResponse } from "../utils/ApiResponse.js";
+import ApiResponse  from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken"
 import mongoose from "mongoose";
 
@@ -142,7 +142,7 @@ const loginUser = asyncHandler(async (req, res) =>{
     //send cookie
 
     const {email,  password} = req.body
-    console.log(email);
+    //console.log(email);
 
     if ( !email) {
         throw new ApiError(400, " email is required")
@@ -154,7 +154,7 @@ const loginUser = asyncHandler(async (req, res) =>{
         
     // }
 
-    const user = await User.findOne({email})
+    const user = await User.findOne({email}).select("+password")
 
     if (!user) {
         throw new ApiError(404, "User does not exist")

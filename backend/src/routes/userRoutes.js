@@ -7,15 +7,15 @@ import {
     changeCurrentPassword, 
     getCurrentUser,  
     updateAccountDetails
-} from "../controllers/usercontroller.js";
+} from "../controller/usercontroller.js";
 //import {upload} from "../middlewares/multer.middleware.js"
-import { verifyJWT } from "../middlewares/authmiddleware.js";
+import { verifyJWT } from "../middleware/authmiddleware.js";
 
 
 const router = Router()
 
 
-
+router.route("/register").post(registerUser)
 router.route("/login").post(loginUser)
 
 //secured routes
