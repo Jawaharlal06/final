@@ -2,13 +2,14 @@ import  ApiError  from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken"
 import { User } from "../models/usermodel.js";
+import {url} from "../models/urlmodel.js"
 
 export const verifyJWT = asyncHandler(async(req, _, next) => {
     try {
-        console.log("Cookies:", req.cookies);
-console.log("Authorization header:", req.header("Authorization"));
+        //console.log("Cookies:", req.cookies);
+//console.log("Authorization header:", req.header("Authorization"));
 const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
-console.log("Token used for JWT:", token);
+//console.log("Token used for JWT:", token);
         if (!token) {
             throw new ApiError(401, "Unauthorized request")
         }
