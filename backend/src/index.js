@@ -11,3 +11,8 @@ connectDB()
 .catch((err) => {
     console.log("MONGO db connection failed !!! ", err);
 })
+
+/*{
+  "mainurl":"https://openai.com/index/emergent-misalignment/",
+ "suburl":"https://openai.com/index/"
+}*/
