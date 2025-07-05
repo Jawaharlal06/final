@@ -67,9 +67,25 @@ const deleteurl = async (req, res) => {
   }
 };
 
+import { scrapeWebpage } from "../utils/scrapeWebpage.js";
+
+const extractContext = async (req, res) => {
+  try {
+    const { url: targetUrl } = req.body;
+    if (!targetUrl) {
+      return res.status(400).json({ message: "URL is required" });
+    }
+    const result = await scrapeWebpage(targetUrl);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export {
   addurls,
   myurls,
-  deleteurl
+  deleteurl,
+  extractContext
 };
 //export default urlcontroller;
